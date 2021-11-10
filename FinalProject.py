@@ -1,6 +1,12 @@
+'''
+Author: Ben Lehmann
+Date: 11/1 - Not Done
+
+
+'''
+
+
 from tkinter import *
-
-
 
 class GroceryList:
     grocery = []
