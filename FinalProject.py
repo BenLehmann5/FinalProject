@@ -38,12 +38,6 @@ class Prices:
     def CostSize(self):
         return len(self.queue)
 
-    def cost(self,user_prices):
-        total = 0
-        for value in user_prices:
-            total = total + value
-        return total
-
 def UserItems():
     grocery = GroceryList()
     i = 0
@@ -70,21 +64,34 @@ def UserCost():
     while 1:
         i += 1
         items = float(input('Enter Price %d: ' % i))
-        if items == 0:
+        if items == 0.00:
             break
         cost.enqueue(items)
-    print(cost.queue)
+    #print("Total " + sum(cost.queue))
+    return(cost.queue)
+
+def userTotal():
+    cost = Prices()
+    i = 0
+    while 1:
+        i += 1
+        items = float(input('Enter Price %d: ' % i))
+        if items == 0.00:
+            break
+        cost.enqueue(items)
+    print("Total " + sum(cost.queue))
+    return(cost.queue)
 
 class UserAndCost:
     def __init__(self):
         self.dic = {}
 
     def add(self,key,value):
-        self[key] = float(value)
+        self[key] = value
 
     def print_value(self):
         for k,v in self.dic.items():
-            print(k + " : " + v)
+            return(k + " : " + v)
 
 
 def combine():
@@ -93,7 +100,7 @@ def combine():
     for x in range(user_x):
         item = input('Enter your item')
         cost = input('Enter your price')
-        cost_item.add(item,cost)
+        cost_item.dic[item] = cost
     cost_item.print_value()
 
 def InsertionSort(userList):
@@ -107,4 +114,7 @@ def InsertionSort(userList):
 
 
 if __name__ == "__main__":
-    print(combine())
+    cost = UserCost()
+    print(cost)
+    InsertionSort(cost)
+    print(cost)
