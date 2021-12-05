@@ -1,11 +1,20 @@
 '''
 Author: Ben Lehmann
 Date: 11/1 - Not Done
+Function: Ask the user to either add item names, or prices or even both
+
+Data Structures: Queues, Map, Stack
+Algorithm: Insertion Sort
+
+10/28 - Standup #1
+11/04 - Standup #2
+11/10 - Standup #3
+11/17 - Standup #4
+
 
 
 '''
 
-from tkinter import *
 
 class GroceryList:
     def __init__(self):
@@ -29,14 +38,19 @@ class GroceryList:
 class Prices:
     def __init__(self):
         self.queue = []
+
+    def is_empty(self):
+        return self.size() == 0
+
+    def size(self):
+        return len(self.queue)
+
     def enqueue(self,cost):
         self.queue.append(cost)
     def dequeue(self):
         if len(self.queue) < 1:
             return None
         return self.queue.pop(0)
-    def CostSize(self):
-        return len(self.queue)
 
 def UserItems():
     grocery = GroceryList()
@@ -52,14 +66,15 @@ def UserItems():
     if(addOr == 'Add'):
         added = input('Enter the item')
         grocery.adding(added)
-        print(grocery.items)
+        return grocery.items
     elif(addOr == 'Delete'):
         grocery.remove()
-        print(grocery.items)
+        return grocery.items
     return
 
 def UserCost():
     cost = Prices()
+    print("Enter your prices and then type '0.0' to finish")
     i = 0
     while 1:
         i += 1
@@ -67,11 +82,11 @@ def UserCost():
         if items == 0.00:
             break
         cost.enqueue(items)
-    #print("Total " + sum(cost.queue))
     return(cost.queue)
 
 def userTotal():
     cost = Prices()
+    print("Enter your prices and then type '0.0' to finish")
     i = 0
     while 1:
         i += 1
@@ -79,7 +94,6 @@ def userTotal():
         if items == 0.00:
             break
         cost.enqueue(items)
-    print("Total " + sum(cost.queue))
     return(cost.queue)
 
 class UserAndCost:
@@ -90,8 +104,9 @@ class UserAndCost:
         self[key] = value
 
     def print_value(self):
+        print("Items------------")
         for k,v in self.dic.items():
-            return(k + " : " + v)
+            print(k + " : " + v)
 
 
 def combine():
@@ -103,7 +118,7 @@ def combine():
         cost_item.dic[item] = cost
     cost_item.print_value()
 
-def InsertionSort(userList):
+def InsertionSort(userList):    #I was between Selection Sort or Insertion sort, tried both, tested them and Insertion was better
     for i in range(1, len(userList)):
         currentVal = userList[i]
         pos = i
@@ -113,8 +128,20 @@ def InsertionSort(userList):
         userList[pos] = currentVal
 
 
+def UserSelection():
+    user = input("Do You Want to Enter Prices or Enter Items, Press P for Prices or I for Item or B for Both")
+    if user == 'i':
+        items = UserItems()
+        return items
+    elif user == 'p':
+        cost = UserCost()
+        print(cost)
+        InsertionSort(cost)
+        print(cost)
+        return "Cost $" + str(sum(cost))
+    elif user == 'b':
+        user_items = combine()
+        print(user_items)
+
 if __name__ == "__main__":
-    cost = UserCost()
-    print(cost)
-    InsertionSort(cost)
-    print(cost)
+    print(UserCost())
