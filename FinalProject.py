@@ -70,7 +70,7 @@ def UserItems():
     elif(addOr == 'Delete'):
         grocery.remove()
         return grocery.items
-    return
+    return "Your List: " + str(grocery.items)
 
 def UserCost():
     cost = Prices()
@@ -144,4 +144,4 @@ def UserSelection():
         print(user_items)
 
 if __name__ == "__main__":
-    print(UserCost())
+    print(UserSelection())
