@@ -1,6 +1,6 @@
 '''
 Author: Ben Lehmann
-Date: 11/1 - Not Done
+Date: 11/1 - 12/10
 Function: Ask the user to either add item names, or prices or even both
 
 Data Structures: Queues, Map, Stack
