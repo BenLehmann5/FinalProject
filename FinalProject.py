@@ -106,17 +106,22 @@ class UserAndCost:
     def print_value(self):
         print("Items------------")
         for k,v in self.dic.items():
-            print(k + " : " + v)
+             print(k + " : " + v)
+        return
 
+    def total(self):
+        totals = self.dic.values()
+        print(str(sum(totals)))
 
 def combine():
     cost_item = UserAndCost()
-    user_x = int(input("Enter the Number of items"))
+    user_x = int(input("Enter the Number of items:  "))
     for x in range(user_x):
-        item = input('Enter your item')
-        cost = input('Enter your price')
+        item = input('Enter your item: ')
+        cost = input('Enter your price: ')
         cost_item.dic[item] = cost
     cost_item.print_value()
+
 
 def InsertionSort(userList):    #I was between Selection Sort or Insertion sort, tried both, tested them and Insertion was better
     for i in range(1, len(userList)):
@@ -129,7 +134,7 @@ def InsertionSort(userList):    #I was between Selection Sort or Insertion sort,
 
 
 def UserSelection():
-    user = input("Do You Want to Enter Prices or Enter Items, Press P for Prices or I for Item or B for Both")
+    user = input("Do You Want to Enter Prices or Enter Items, Press P for Prices or I for Item or B for Both:  ")
     if user == 'i':
         items = UserItems()
         return items
@@ -142,6 +147,8 @@ def UserSelection():
     elif user == 'b':
         user_items = combine()
         print(user_items)
+    else:
+        return None
 
 if __name__ == "__main__":
     print(UserSelection())
